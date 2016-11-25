@@ -1,20 +1,15 @@
 {
-  "name": "kenmaglio-winsp",
+  "name": "kenmaglio-winsw",
   "version": "0.0.1",
   "author": "Ken Maglio",
+  "summary": "WINSW Module. Service Wrapper for any process.",
   "license": "MIT",
-  "summary": "Module to ",
   "source": "https://github.com/kenmaglio/puppet-winsw",
-  "project_page": "https://github.com/kenmaglio/puppet-winsw/projects/1",
+  "project_page": "https://github.com/kenmaglio/puppet-winsw/projects",
   "issues_url": "https://github.com/kenmaglio/puppet-winsw/issues",
-  "tags": ["winsw", "service wrapper", "windows", "puppet", "service"],
-  "operatingsystem_support": [
-    {
-    "operatingsystem":"Windows Server",
-    "operatingsystemrelease":[ "2012 R2"]
-    }
-    ],
   "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
   ],
-  "data_provider": "hiera"
+  "data_provider": null
 }
+

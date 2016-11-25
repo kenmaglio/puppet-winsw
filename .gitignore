@@ -2,3 +2,6 @@
 
 # cache/options directory
 .vscode/
+
+# git
+.git/
