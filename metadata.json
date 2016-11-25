@@ -1,0 +1,20 @@
+{
+  "name": "kenmaglio-winsp",
+  "version": "0.0.1",
+  "author": "Ken Maglio",
+  "license": "MIT",
+  "summary": "Module to ",
+  "source": "https://github.com/kenmaglio/puppet-winsw",
+  "project_page": "https://github.com/kenmaglio/puppet-winsw/projects/1",
+  "issues_url": "https://github.com/kenmaglio/puppet-winsw/issues",
+  "tags": ["winsw", "service wrapper", "windows", "puppet", "service"],
+  "operatingsystem_support": [
+    {
+    "operatingsystem":"Windows Server",
+    "operatingsystemrelease":[ "2012 R2"]
+    }
+    ],
+  "dependencies": [
+  ],
+  "data_provider": "hiera"
+}
