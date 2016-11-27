@@ -1,5 +1,12 @@
 # winsw
 
+#### NOTES TO SELF
+In order for puppet to find my module "installed"
+From directory  C:\ProgramData\PuppetLabs\code\modules
+mklink /D winsw D:\_kenmaglio\puppet-winsw
+
+
+
 #### Table of Contents
 
 1. [Description](#description)
