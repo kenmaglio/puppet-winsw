@@ -6,7 +6,7 @@ define winsw::service (
 
   exec { "run_service_${service_id}":
     command  => "& '${install_path}${service_id}.exe' start",
-    unless   => "\$result = (& '${install_path}${service_id}.exe' status); if (\$result -eq \"Running\") { exit 1 } else { exit 0 }",
+    unless   => "\$result = (& '${install_path}${service_id}.exe' status); if (\$result -eq \"Running\") { exit 0 } else { exit 1 }",
     provider => powershell
   }
 }
