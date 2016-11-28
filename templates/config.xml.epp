@@ -2,8 +2,10 @@
   <id><%= $winsw::install::service_id %></id>
   <name><%= $winsw::install::service_name %></name>
   <description><%= $winsw::install::service_description %></description>
-  <% each($winsw::install::service_env_variables) | $index, $var | { -%>
+  <% if($winsw::install::service_env_variables) { -%>
+  <%   each($winsw::install::service_env_variables) | $index, $var | { -%>
   <env name="<%= $var['name'] %>" value="<%= $var['value'] %>"/>
+  <%   } -%>
   <% } -%>
   <executable><%= $winsw::install::service_executable %></executable>
   <arguments><%= $winsw::install::service_argument_string %></arguments>

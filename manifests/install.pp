@@ -1,24 +1,23 @@
-# Class: winsw
-#
-#
-class winsw::install (
-  $winsw_binary_version    = $::winsw::params::winsw_binary_version,
-  $install_path            = $::winsw::params::install_path,
-  $winsw_exe_name          = $::winsw::params::winsw_exe_name,
-  $service_id              = $::winsw::params::service_id,
-  $service_name            = $::winsw::params::service_name,
-  $service_description     = $::winsw::params::service_description,
-  $service_env_variables   = $::winsw::params::service_env_variables,
-  $service_executable      = $::winsw::params::service_executable,
-  $service_argument_string = $::winsw::params::service_argument_string,
-  $service_logmode         = $::winsw::params::service_logmode,
-) inherits ::winsw::params {
+define winsw::install (
+  $winsw_binary_version = 'winsw_1_19_1',
+  $install_path = 'C:/Program Files/WinSW/',
+  $winsw_exe_name,
+  $service_id,
+  $service_name,
+  $service_description = 'An executable is being run as a service using WinSW',
+  $service_env_variables = undef,
+  $service_executable,
+  $service_argument_string = '',
+  $service_logmode = 'rotate',
+) {
 
+  # ensure entire path exists
   winsw::recurse_dir { 'install_directories':
     path    => $install_path,
     before  => File['winsw_exe','config_xml']
   }
 
+  # place the exe file for winsw - named as the user wants.
   file { 'winsw_exe':
     ensure   => file,
     source   => "puppet:///modules/winsw/${winsw_binary_version}.exe",

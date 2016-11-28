@@ -11,4 +11,3 @@
 #
 
 include winsw
-include winsw::install

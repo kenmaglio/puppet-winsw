@@ -8,12 +8,7 @@ class winsw::params {
   $service_id              = 'MyService'
   $service_name            = 'My Service'
   $service_description     = 'This service runs My Service'
-  $service_env_variables   = {
-    pshome => {
-      name  => 'PS_HOME',
-      value => 'C:\scripts'
-    }
-  }
+  $service_env_variables   = undef
   $service_executable      = 'powershell'
   $service_argument_string = ''
   $service_logmode         = 'rotate'
