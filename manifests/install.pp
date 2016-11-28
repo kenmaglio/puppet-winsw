@@ -1,7 +1,6 @@
 define winsw::install (
   $winsw_binary_version = 'winsw_1_19_1',
   $install_path = 'C:/Program Files/WinSW/',
-  $winsw_exe_name,
   $service_id,
   $service_name,
   $service_description = 'An executable is being run as a service using WinSW',
@@ -12,37 +11,37 @@ define winsw::install (
 ) {
 
   # ensure entire path exists
-  winsw::recurse_dir { 'install_directories':
+  winsw::recurse_dir { "install_directories_${service_id}":
     path    => $install_path,
-    before  => File['winsw_exe','config_xml']
+    before  => File["winsw_exe_${service_id}","config_xml_${service_id}"]
   }
 
   # place the exe file for winsw - named as the user wants.
-  file { 'winsw_exe':
+  file { "winsw_exe_${service_id}":
     ensure   => file,
     source   => "puppet:///modules/winsw/${winsw_binary_version}.exe",
-    path     => "${install_path}${winsw_exe_name}.exe",
-    before   => File['config_xml'],
-    notify   => Exec['uninstall_service']
+    path     => "${install_path}${service_id}.exe",
+    before   => File["config_xml_${service_id}"],
+    notify   => Exec["uninstall_service_${service_id}"]
   }
 
-  file { 'config_xml':
+  file { "config_xml_${service_id}":
     ensure   => file,
     content  => epp('winsw/config.xml.epp'),
-    path     => "${install_path}${winsw_exe_name}.xml",
-    notify   => Exec['uninstall_service']
+    path     => "${install_path}${service_id}.xml",
+    notify   => Exec["uninstall_service_${service_id}"]
   }
 
-  exec { 'uninstall_service':
-    command  => "& '${install_path}${winsw_exe_name}.exe' uninstall",
-    unless   => "\$result = (& '${install_path}${winsw_exe_name}.exe' status); if (\$result -eq \"NonExistent\") { exit 1 } else { exit 0 }",
+  exec { "uninstall_service_${service_id}":
+    command  => "& '${install_path}${service_id}.exe' uninstall",
+    unless   => "\$result = (& '${install_path}${service_id}.exe' status); if (\$result -eq \"NonExistent\") { exit 1 } else { exit 0 }",
     provider => powershell,
-    notify   => Exec['install_service']
+    notify   => Exec["install_service_${service_id}"]
   }
 
-  exec { 'install_service':
-    command  => "& '${install_path}${winsw_exe_name}.exe' install",
-    unless   => "\$result = (& '${install_path}${winsw_exe_name}.exe' status); if (\$result -eq \"NonExistent\") { exit 1 } else { exit 0 }",
+  exec { "install_service_${service_id}":
+    command  => "& '${install_path}${service_id}.exe' install",
+    unless   => "\$result = (& '${install_path}${service_id}.exe' status); if (\$result -eq \"NonExistent\") { exit 1 } else { exit 0 }",
     provider => powershell
   }
 

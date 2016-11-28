@@ -4,7 +4,6 @@
 class winsw (
   $winsw_binary_version    = $::winsw::params::winsw_binary_version,
   $install_path            = $::winsw::params::install_path,
-  $winsw_exe_name          = $::winsw::params::winsw_exe_name,
   $service_id              = $::winsw::params::service_id,
   $service_name            = $::winsw::params::service_name,
   $service_description     = $::winsw::params::service_description,
@@ -17,7 +16,6 @@ class winsw (
   winsw::install { "$service_id":
     winsw_binary_version => $winsw_binary_version,
     install_path            => $install_path,
-    winsw_exe_name          => $winsw_exe_name,
     service_id              => $service_id,
     service_name            => $service_name,
     service_description     => $service_description,
@@ -31,6 +29,6 @@ class winsw (
   winsw::service { "$service_id":
     ensure         => 'running',
     install_path   => $install_path,
-    winsw_exe_name => $winsw_exe_name
+    service_id     => $service_id
   }
 }
