@@ -1,5 +1,5 @@
 define winsw::service (
-  $ensure = 'running',
+  $ensure = running,
   $install_path = 'C:/Program Files/WinSW/',
   $service_id,
 ) {

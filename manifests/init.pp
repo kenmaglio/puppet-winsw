@@ -14,7 +14,8 @@ class winsw (
 ) inherits ::winsw::params {
 
   winsw::install { "$service_id":
-    winsw_binary_version => $winsw_binary_version,
+    ensure                  => present,
+    winsw_binary_version    => $winsw_binary_version,
     install_path            => $install_path,
     service_id              => $service_id,
     service_name            => $service_name,
@@ -27,7 +28,7 @@ class winsw (
   }
 
   winsw::service { "$service_id":
-    ensure         => 'running',
+    ensure         => running,
     install_path   => $install_path,
     service_id     => $service_id
   }
