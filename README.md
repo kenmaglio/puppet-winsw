@@ -3,7 +3,7 @@
 #### NOTES TO SELF
 In order for puppet agent without a puppet master to find my module "installed"
 From directory  C:\ProgramData\PuppetLabs\code\environments\production\modules
-mklink /D winsw D:\_kenmaglio\puppet-winsw 
+mklink /D winsw D:\_kenmaglio\winsw 
 
 
 
