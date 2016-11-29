@@ -14,7 +14,7 @@
 ## Important
 
 If you change the $service_id value, after you have installed the service, and you do not ensure abscent first, you will cause errors.
-The reason is because the code which tried to uninstall, will already have been effected
+The reason is because the code which tried to uninstall, will already have been effected.
 
 ## Description
 
@@ -39,6 +39,7 @@ By default, classifying a node with this class will not get you very far.
 It will test that the module will work and will run an instance of powershell.exe as a service.
 
 You can take two approaches:
+
 1. Use the Defined Types under Usage in your own module. They will automatically be created once you add this module ot your puppet file.
    1. You can build your own class that manages multiple services this way, if you so choose.
 1. You can classify a node with the winsw class, and use hiera to override the local variables.
