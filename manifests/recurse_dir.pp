@@ -1,3 +1,6 @@
+# Ensure Directories Recursivly
+#
+#
 define winsw::recurse_dir ($ensure, $path, $spliton='/') {
 
   # split and define first element as drive

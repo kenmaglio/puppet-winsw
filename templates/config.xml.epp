@@ -4,7 +4,7 @@
   <description><%= $winsw::service_description %></description>
   <% if($winsw::service_env_variables) { -%>
   <%   each($winsw::service_env_variables) | $index, $var | { -%>
-  <env name="<%= $var['name'] %>" value="<%= $var['value'] %>"/>
+  <env name="<%= ${var['name']} %>" value="<%= ${var['value']} %>"/>
   <%   } -%>
   <% } -%>
   <executable><%= $winsw::service_executable %></executable>
