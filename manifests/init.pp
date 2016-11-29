@@ -1,4 +1,5 @@
 # Class: winsw
+
 #
 #
 class winsw (
@@ -13,7 +14,7 @@ class winsw (
   $service_logmode         = $::winsw::params::service_logmode,
 ) inherits ::winsw::params {
 
-  winsw::install { "$service_id":
+  winsw::files { "files_myservice":
     ensure                  => present,
     winsw_binary_version    => $winsw_binary_version,
     install_path            => $install_path,
@@ -24,12 +25,21 @@ class winsw (
     service_executable      => $service_executable,
     service_argument_string => $service_argument_string,
     service_logmode         => $service_logmode,
-    before                  => Winsw::Service["$service_id"]
+    notify                  => Winsw::Install["start_myservice"]
   }
 
-  winsw::service { "$service_id":
-    ensure         => running,
-    install_path   => $install_path,
-    service_id     => $service_id
+  winsw::install { "install_myservice":
+    ensure                  => present,
+    winsw_binary_version    => $winsw_binary_version,
+    install_path            => $install_path,
+    service_id              => $service_id,
+    notify                  => Winsw::Service["start_myservice"],
   }
+
+  winsw::service { "start_myservice":
+    ensure       => running,
+    install_path => $install_path,
+    service_id   => $service_id,
+  }
+
 }
