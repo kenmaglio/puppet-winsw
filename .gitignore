@@ -5,3 +5,6 @@
 
 # git
 .git/
+
+# pkg
+.pkg/
