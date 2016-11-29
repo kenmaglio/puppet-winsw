@@ -3,6 +3,7 @@ class remove (
   $install_path            = $::winsw::params::install_path,
   $service_id              = $::winsw::params::service_id,
 ) {
+
   winsw::install { "uninstall_myservice":
     ensure       => absent,
     install_path => $install_path,

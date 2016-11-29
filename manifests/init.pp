@@ -25,7 +25,7 @@ class winsw (
     service_executable      => $service_executable,
     service_argument_string => $service_argument_string,
     service_logmode         => $service_logmode,
-    notify                  => Winsw::Install["start_myservice"]
+    notify                  => Winsw::Service["start_myservice"]
   }
 
   winsw::install { "install_myservice":
