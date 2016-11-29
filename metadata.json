@@ -4,12 +4,19 @@
   "author": "Ken Maglio",
   "summary": "WINSW Module. Service Wrapper for any process.",
   "license": "MIT",
-  "source": "https://github.com/kenmaglio/puppet-winsw",
-  "project_page": "https://github.com/kenmaglio/puppet-winsw/projects",
-  "issues_url": "https://github.com/kenmaglio/puppet-winsw/issues",
+  "source": "https://github.com/kenmaglio/winsw",
+  "project_page": "https://github.com/kenmaglio/winsw/projects",
+  "issues_url": "https://github.com/kenmaglio/winsw/issues",
   "dependencies": [
     { "name": "puppetlabs/powershell", "version_requirement": ">=2.1.0" }
   ],
-  "data_provider": null
+  "data_provider": null,
+  "operatingsystem_support": [
+    {
+      "operatingsystem":"Windows",
+      "operatingsystemrelease":[ "Windows 10", "Windows Server 2012 R2" ]
+    }
+  ],
+  "tags": ["Service Wrapper","WinSW", "Service", "Windows"]
 }
 

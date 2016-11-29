@@ -57,6 +57,11 @@ define winsw::install (
   }
 
   # place the exe file for winsw - named as the user wants.
+  file { "winsw_exe_config_${service_id}":
+    ensure => $ensure,
+    source => 'puppet:///modules/winsw/exe.config',
+    path   => "${install_path}${service_id}.exe.config",
+  } ->
   file { "winsw_exe_${service_id}":
     ensure => $ensure,
     source => "puppet:///modules/winsw/${winsw_binary_version}.exe",

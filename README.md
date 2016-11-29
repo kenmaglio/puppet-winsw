@@ -16,6 +16,9 @@
 If you change the $service_id value, after you have installed the service, and you do not ensure abscent first, you will cause errors.
 The reason is because the code which tried to uninstall, will already have been effected.
 
+Tested on Windows 10 and Windows Server 2012 R2.
+There shouldn't be any reason this wouldn't work on 
+
 ## Description
 
 This module encapsulates functionality of the WinSW service application wrapper.
