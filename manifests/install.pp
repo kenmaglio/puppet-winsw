@@ -2,11 +2,15 @@
 #
 #
 define winsw::install (
-  $ensure                  = undef,
+  $service_id              = undef,
+  $ensure                  = present,
   $winsw_binary_version    = 'winsw_1_19_1',
   $install_path            = 'C:/Program Files/WinSW/',
-  $service_id              = undef,
 ) {
+
+  if (!$service_id) {
+    fail('Service ID must be provided')
+  }
 
   if $ensure == present {
     # install the service

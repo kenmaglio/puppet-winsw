@@ -15,30 +15,21 @@ class winsw (
 
   winsw::files { 'files_myservice':
     ensure                  => present,
-    winsw_binary_version    => $winsw_binary_version,
-    install_path            => $install_path,
     service_id              => $service_id,
     service_name            => $service_name,
-    service_description     => $service_description,
     service_env_variables   => $service_env_variables,
     service_executable      => $service_executable,
     service_argument_string => $service_argument_string,
-    service_logmode         => $service_logmode,
     notify                  => Winsw::Service['start_myservice']
   }
 
   winsw::install { 'install_myservice':
-    ensure               => present,
-    winsw_binary_version => $winsw_binary_version,
-    install_path         => $install_path,
-    service_id           => $service_id,
-    notify               => Winsw::Service['start_myservice'],
+    service_id => $service_id,
+    notify     => Winsw::Service['start_myservice'],
   }
 
   winsw::service { 'start_myservice':
-    ensure       => running,
-    install_path => $install_path,
-    service_id   => $service_id,
+    service_id => $service_id,
   }
 
 }

@@ -2,11 +2,11 @@
   <id><%= $winsw::service_id %></id>
   <name><%= $winsw::service_name %></name>
   <description><%= $winsw::service_description %></description>
-  <% if($winsw::service_env_variables) { -%>
-  <%   each($winsw::service_env_variables) | $index, $var | { -%>
+<% if($winsw::service_env_variables) { -%>
+<% each($winsw::service_env_variables) | $index, $var | { -%>
   <env name="<%= ${var['name']} %>" value="<%= ${var['value']} %>"/>
-  <%   } -%>
-  <% } -%>
+<% } -%>
+<% } -%>
   <executable><%= $winsw::service_executable %></executable>
   <arguments><%= $winsw::service_argument_string %></arguments>
   <logmode><%= $winsw::service_logmode %></logmode>

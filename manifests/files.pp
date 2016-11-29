@@ -2,15 +2,15 @@
 #
 #
 define winsw::files (
+  $service_id              = undef,
+  $service_name            = undef,
+  $service_executable      = undef,
+  $service_argument_string = undef,
   $ensure                  = present,
   $winsw_binary_version    = 'winsw_1_19_1',
   $install_path            = 'C:/Program Files/WinSW/',
-  $service_id              = undef,
-  $service_name            = undef,
-  $service_description     = 'An executable is being run as a service using WinSW',
+  $service_description     = 'WinSW for Puppet',
   $service_env_variables   = undef,
-  $service_executable      = undef,
-  $service_argument_string = '',
   $service_logmode         = 'rotate',
 ) {
 
@@ -22,6 +22,9 @@ define winsw::files (
   }
   if (!$service_executable) {
     fail('Service Executable must be provided')
+  }
+  if (!$service_argument_string) {
+    fail('Service Arguments must be provided - even if they are empty')
   }
 
   # ensure entire path exists -- never remove
