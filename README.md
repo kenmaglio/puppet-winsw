@@ -1,6 +1,6 @@
 # winsw
 
-#### Table of Contents
+### Table of Contents
 
 1. [Important](#important)
 1. [Description](#description)
@@ -19,14 +19,19 @@ The reason is because the code which tried to uninstall, will already have been 
 ## Description
 
 This module encapsulates functionality of the WinSW service application wrapper.
-The development of that project is accredited: https://github.com/kohsuke/winsw
+The development of that project is accredited: [https://github.com/kohsuke/winsw](https://github.com/kohsuke/winsw)
 
 This module attempts to allow any executable with any arguments to be wrapped in a Windows Service.
 This will require files to be placed on the system in a managed path: EXE, XML, EXE.Config
 
-Derived Types:
-* install (ensure=>abscent = uninstall)
+### Derived Types:
+* install 
 * service
+
+Install will create the folders in $install_path, drop the files in that folder named $serviceid[.exe|.xml].
+Then after those are successfull, the defined type will install the service into the Service Manager.
+
+Service will ensure the service is running.
 
 ### Beginning with winsw
 
@@ -35,13 +40,13 @@ It will test that the module will work and will run an instance of powershell.ex
 
 You can take two approaches:
 1. Use the Defined Types under Usage in your own module. They will automatically be created once you add this module ot your puppet file.
-1.1. You can build your own class that manages multiple services this way, if you so choose.
+   1. You can build your own class that manages multiple services this way, if you so choose.
 1. You can classify a node with the winsw class, and use hiera to override the local variables.
 
 ## Usage
 
 Usage Pattern for Installing and Configuring
-
+<pre><code>
   winsw::install { 'install_myservice':
     ensure                  => present,
     winsw_binary_version    => $winsw_binary_version,
@@ -57,14 +62,16 @@ Usage Pattern for Installing and Configuring
   winsw::service { 'run_myservice':
     ensure     => running,
     service_id => $service_id,
-  } 
+  }
+</code></pre>
 
 Usage Pattern for Uninstalling
-
+<pre><code>
   winsw::install { 'uninstall_myservice':
     ensure     => absent,
     service_id => $service_id,
   }
+</code></pre>
 
 ## Reference
 
@@ -74,7 +81,7 @@ Then drops the needed files in that path as $service_name(.exe|.xml)
 
 Utilizing exec's against powershell this module will then manage the behavior flow of winsw commands.
 
-#### Known Side-Effects
+## Known Side-Effects
 
 On initial install, the output will show not only the Exec[install_serviceid], but also the Exec[rebuild_service_serviceid].
 This is expected as the config xml file is placed, which fires the notify on Exec[rebuild_service_serviceid].
@@ -90,11 +97,10 @@ More will be added in later revisions.
 
 If you need one specifically please open an issue here on github, and I will try to add that functionality quickly for you.
 
-See: https://github.com/kohsuke/winsw
+See: [https://github.com/kohsuke/winsw](https://github.com/kohsuke/winsw)
 
 ## Development
 
-#### Notes to self 
 While using --modulepath does work, this approach I found easier
 From directory  C:\ProgramData\PuppetLabs\code\environments\production\modules
 mklink /D winsw D:\[your git root dir]\winsw 
