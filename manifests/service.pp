@@ -17,8 +17,8 @@ define winsw::service (
   if ($ensure == running ) {
     exec { "start_service_${service_id}":
       command  => "& '${install_path}${service_id}.exe' start",
-      unless   => "\$started = (& '${install_path}${service_id}.exe' status); " \
-                  "if (\$started -eq \"Started\") { exit 0 } else { exit 1 }",
+      unless   => "\$started = (& '${install_path}${service_id}.exe' status); \
+                   if (\$started -eq \"Started\") { exit 0 } else { exit 1 }",
       provider => powershell,
     }
   }
@@ -26,8 +26,8 @@ define winsw::service (
   if ($ensure == stopped ) {
     exec { "stop_service_${service_id}":
       command     => "& '${install_path}${service_id}.exe' stop",
-      unless      => "\$started = (& '${install_path}${service_id}.exe' status); " \
-                    "if (\$installed -eq \"Stopped\") { exit 0 } else { exit 1 }",
+      unless      => "\$started = (& '${install_path}${service_id}.exe' status); \
+                      if (\$installed -eq \"Stopped\") { exit 0 } else { exit 1 }",
       refreshonly => true,
       provider    => powershell,
     }

@@ -6,7 +6,7 @@ class winsw::params {
   $install_path            = 'C:/Program Files/WinSW/'
   $service_id              = 'MyService'
   $service_name            = 'My Service'
-  $service_description     = 'This service runs My Service'
+  $service_description     = 'WinSW Service Wrapper'
   $service_env_variables   = undef
   $service_executable      = 'powershell'
   $service_argument_string = ''
