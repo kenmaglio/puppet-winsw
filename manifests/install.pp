@@ -1,4 +1,4 @@
-# Defined Type Install
+# Defined Type install
 #
 #
 define winsw::install (

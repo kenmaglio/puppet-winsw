@@ -26,7 +26,7 @@ class winsw (
     service_logmode         => $service_logmode,
   } ->
 
-  winsw::service { 'start_myservice':
+  winsw::service { 'run_myservice':
     ensure     => running,
     service_id => $service_id,
   }
