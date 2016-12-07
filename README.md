@@ -7,6 +7,7 @@
 1. [Setup - The basics of getting started with winsw](#setup)
     * [Beginning with winsw](#beginning-with-winsw)
 1. [Usage - Configuration options and additional functionality](#usage)
+    * [Additional Configurations](#additional-configuration-parameters)
 1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 1. [Limitations - OS compatibility, etc.](#limitations)
 1. [Development - Guide for contributing to the module](#development)
@@ -55,25 +56,44 @@ Title = name of executable / service
 <pre><code>
   winsw::install { 'MyService':
     ensure                  => present,
-    winsw_binary_version    => $winsw_binary_version,
-    install_path            => $install_path,
     service_name            => $service_name,
     service_executable      => $service_executable,
     service_argument_string => $service_argument_string,
+  } ->
+  winsw::service { 'MyService':
+    ensure => running,
+  }
+</code></pre>
+
+Optional Parameters
+<pre><code>
+    winsw_binary_version    => $winsw_binary_version,
+    install_path            => $install_path,
     service_description     => $service_description,
     service_env_variables   => $service_env_variables,
     service_logmode         => $service_logmode,
-  } ->
-  winsw::service { 'MyService':
-    ensure     => running,
-  }
 </code></pre>
 
 Usage Pattern for Uninstalling
 <pre><code>
   winsw::install { 'MyService':
-    ensure     => absent,
+    ensure => absent,
   }
+</code></pre>
+
+### Additional Configuration Parameters
+
+
+To Specify Service Account to run service as
+<pre><code>
+    service_user            => 'your_serviceaccount',
+    service_pass            => 'your_serviceaccount_password',
+    service_domain          => 'your_serviceaccount_domain'
+</code></pre>
+
+To Run Interactively (not service account cannot be used - only local system)
+<pre><code>
+    service_interactive     => $true
 </code></pre>
 
 ## Reference
@@ -104,8 +124,13 @@ See: [https://github.com/kohsuke/winsw](https://github.com/kohsuke/winsw)
 
 ## Development
 
-While using --modulepath does work, this approach I found easier
-From directory  C:\ProgramData\PuppetLabs\code\environments\production\modules
-mklink /D winsw D:\[your git root dir]\winsw 
+#### Please fork and submit pull requests
 
-Then from D:\[your git root dir] in teminal:  puppet apply .\winsw\
+To setup local environment:
+<pre><code>
+puppet module install puppetlabs-powershell --version 2.1.0 --modulepath=[your path to modules here]
+puppet apply -v -e 'include winsw' --modulepath=[your path to modules here]
+</code></pre>
+You can include --noop if you don't want to apply, however service actions will fail as it won't actually install.
+
+
