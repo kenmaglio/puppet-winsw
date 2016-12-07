@@ -9,7 +9,7 @@
   "issues_url": "https://github.com/kenmaglio/winsw/issues",
   "dependencies": [
     { "name": "puppetlabs/powershell", "version_requirement": ">=2.1.0" },
-    { "name": "kenmaglio/toolbox", "version_requirement": ">=1.0.1" }
+    { "name": "kenmaglio/toolbox", "version_requirement": ">=1.0.3" }
   ],
   "data_provider": null,
   "operatingsystem_support": [
