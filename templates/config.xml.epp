@@ -1,24 +1,24 @@
 <service>
-  <id><%= $winsw::install::service_id %></id>
-  <name><%= $winsw::install::service_name %></name>
-  <description><%= $winsw::install::service_description %></description>
-<% if($winsw::install::service_env_variables) { -%>
-<% each($winsw::install::service_env_variables) | $index, $var | { -%>
+  <id><%= $winsw::service_id %></id>
+  <name><%= $winsw::service_name %></name>
+  <description><%= $winsw::service_description %></description>
+<% if($winsw::service_env_variables) { -%>
+<% each($winsw::service_env_variables) | $index, $var | { -%>
   <env name="<%= $var['name'] %>" value="<%= $var['value'] %>"/>
 <% } -%>
 <% } -%>
-  <executable><%= $winsw::install::service_executable %></executable>
-  <arguments><%= $winsw::install::service_argument_string %></arguments>
-  <logmode><%= $winsw::install::service_logmode %></logmode>
-<% if($winsw::install::service_user) { -%>
+  <executable><%= $winsw::service_executable %></executable>
+  <arguments><%= $winsw::service_argument_string %></arguments>
+  <logmode><%= $winsw::service_logmode %></logmode>
+<% if($winsw::service_user) { -%>
   <serviceaccount>
-    <domain><%= $winsw::install::service_domain %></domain>
-    <user><%= $winsw::install::service_user %></user>
-    <password><%= $winsw::install::service_pass %></password>
+    <domain><%= $winsw::service_domain %></domain>
+    <user><%= $winsw::service_user %></user>
+    <password><%= $winsw::service_pass %></password>
     <allowservicelogon>true</allowservicelogon>
   </serviceaccount>
 <% } -%>
-<% if($winsw::install::service_interactive) { -%>
+<% if($winsw::service_interactive) { -%>
   <interactive />
 <% } -%>
 </service>
