@@ -14,6 +14,7 @@ class winsw (
   $service_user            = $::winsw::params::service_user,
   $service_pass            = $::winsw::params::service_pass,
   $service_domain          = $::winsw::params::service_domain,
+  $service_interactive     = $::winsw::params::service_interactive,
 ) inherits ::winsw::params {
 
   winsw::install { 'install_myservice':

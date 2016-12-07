@@ -14,4 +14,5 @@ class winsw::params {
   $service_user            = undef
   $service_pass            = undef
   $service_domain          = undef
+  $service_interactive     = false
 }

@@ -18,4 +18,7 @@
     <allowservicelogon>true</allowservicelogon>
   </serviceaccount>
 <% } -%>
+<% if($winsw::service_interactive) { -%>
+  <interactive />
+<% } -%>
 </service>
