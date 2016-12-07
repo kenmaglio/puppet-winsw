@@ -11,6 +11,9 @@ class winsw (
   $service_executable      = $::winsw::params::service_executable,
   $service_argument_string = $::winsw::params::service_argument_string,
   $service_logmode         = $::winsw::params::service_logmode,
+  $service_user            = $::winsw::params::service_user,
+  $service_pass            = $::winsw::params::service_pass,
+  $service_domain          = $::winsw::params::service_domain,
 ) inherits ::winsw::params {
 
   winsw::install { 'install_myservice':
@@ -24,6 +27,9 @@ class winsw (
     service_description     => $service_description,
     service_env_variables   => $service_env_variables,
     service_logmode         => $service_logmode,
+    service_user            => $service_user,
+    service_pass            => $service_pass,
+    service_domain          => $service_domain,
   } ->
 
   winsw::service { 'run_myservice':

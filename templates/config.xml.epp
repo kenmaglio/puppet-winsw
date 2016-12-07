@@ -10,4 +10,12 @@
   <executable><%= $winsw::service_executable %></executable>
   <arguments><%= $winsw::service_argument_string %></arguments>
   <logmode><%= $winsw::service_logmode %></logmode>
+<% if($winsw::service_user) { -%>
+  <serviceaccount>
+    <domain><%= $winsw::service_domain %></domain>
+    <user><%= $winsw::service_user %></user>
+    <password><%= $winsw::service_pass %></password>
+    <allowservicelogon>true</allowservicelogon>
+  </serviceaccount>
+<% } -%>
 </service>

@@ -11,4 +11,7 @@ class winsw::params {
   $service_executable      = 'powershell'
   $service_argument_string = ''
   $service_logmode         = 'rotate'
+  $service_user            = undef
+  $service_pass            = undef
+  $service_domain          = undef
 }

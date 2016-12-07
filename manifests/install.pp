@@ -12,6 +12,9 @@ define winsw::install (
   $service_description     = 'WinSW for Puppet',
   $service_env_variables   = undef,
   $service_logmode         = 'rotate',
+  $service_user            = undef,
+  $service_pass            = undef,
+  $service_domain          = undef,
 ) {
 
   if (!$service_id) {
