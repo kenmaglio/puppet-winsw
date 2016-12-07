@@ -1,24 +1,24 @@
 <service>
-  <id><%= $winsw::service_id %></id>
-  <name><%= $winsw::service_name %></name>
-  <description><%= $winsw::service_description %></description>
-<% if($winsw::service_env_variables) { -%>
-<% each($winsw::service_env_variables) | $index, $var | { -%>
+  <id><%= $service_id %></id>
+  <name><%= $service_name %></name>
+  <description><%= $service_description %></description>
+<% if($service_env_variables) { -%>
+<% each($service_env_variables) | $index, $var | { -%>
   <env name="<%= $var['name'] %>" value="<%= $var['value'] %>"/>
 <% } -%>
 <% } -%>
-  <executable><%= $winsw::service_executable %></executable>
-  <arguments><%= $winsw::service_argument_string %></arguments>
-  <logmode><%= $winsw::service_logmode %></logmode>
-<% if($winsw::service_user) { -%>
+  <executable><%= $service_executable %></executable>
+  <arguments><%= $service_argument_string %></arguments>
+  <logmode><%= $service_logmode %></logmode>
+<% if($service_user) { -%>
   <serviceaccount>
-    <domain><%= $winsw::service_domain %></domain>
-    <user><%= $winsw::service_user %></user>
-    <password><%= $winsw::service_pass %></password>
+    <domain><%= $service_domain %></domain>
+    <user><%= $service_user %></user>
+    <password><%= $service_pass %></password>
     <allowservicelogon>true</allowservicelogon>
   </serviceaccount>
 <% } -%>
-<% if($winsw::service_interactive) { -%>
+<% if($service_interactive) { -%>
   <interactive />
 <% } -%>
 </service>

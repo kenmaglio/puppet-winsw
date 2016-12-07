@@ -84,7 +84,22 @@ define winsw::install (
   # place the config file with the same name as the service - required for winsw
   file { "config_xml_${service_id}":
     ensure  => $ensure,
-    content => epp('winsw/config.xml.epp'),
+    content => epp('winsw/config.xml.epp',{
+                  'service_id'              => $service_id,
+                  'service_name'            => $service_name,
+                  'service_executable'      => $service_executable,
+                  'service_argument_string' => $service_argument_string,
+                  'winsw_binary_version'    => $winsw_binary_version,
+                  'install_path'            => $install_path,
+                  'service_description'     => $service_description,
+                  'service_env_variables'   => $service_env_variables,
+                  'service_logmode'         => $service_logmode,
+                  'service_user'            => $service_user,
+                  'service_pass'            => $service_pass,
+                  'service_domain'          => $service_domain,
+                  'service_interactive'     => $service_interactive
+                  }
+                ),
     path    => "${install_path}${service_id}.xml",
     notify  => $notify_config_change,
   }
