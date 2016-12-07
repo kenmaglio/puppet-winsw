@@ -3,7 +3,7 @@
 #
 define winsw::install (
   $ensure                  = present,
-  $service_id              = undef,
+  $service_id              = $title,
   $service_name            = undef,
   $service_executable      = undef,
   $service_argument_string = undef,

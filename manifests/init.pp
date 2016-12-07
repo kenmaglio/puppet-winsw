@@ -4,7 +4,6 @@
 class winsw (
   $winsw_binary_version    = $::winsw::params::winsw_binary_version,
   $install_path            = $::winsw::params::install_path,
-  $service_id              = $::winsw::params::service_id,
   $service_name            = $::winsw::params::service_name,
   $service_description     = $::winsw::params::service_description,
   $service_env_variables   = $::winsw::params::service_env_variables,
@@ -17,11 +16,10 @@ class winsw (
   $service_interactive     = $::winsw::params::service_interactive,
 ) inherits ::winsw::params {
 
-  winsw::install { 'install_myservice':
+  winsw::install { 'MyService':
     ensure                  => present,
     winsw_binary_version    => $winsw_binary_version,
     install_path            => $install_path,
-    service_id              => $service_id,
     service_name            => $service_name,
     service_executable      => $service_executable,
     service_argument_string => $service_argument_string,
@@ -34,9 +32,8 @@ class winsw (
     service_interactive     => $service_interactive,
   } ->
 
-  winsw::service { 'run_myservice':
+  winsw::service { 'MyService':
     ensure     => running,
-    service_id => $service_id,
   }
 
 }

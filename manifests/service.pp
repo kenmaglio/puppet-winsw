@@ -2,7 +2,7 @@
 #
 #
 define winsw::service (
-  $service_id = undef,
+  $service_id = $title,
   $ensure = undef,
   $install_path = 'C:/Program Files/WinSW/',
 ) {
