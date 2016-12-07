@@ -31,6 +31,7 @@ class winsw (
     service_user            => $service_user,
     service_pass            => $service_pass,
     service_domain          => $service_domain,
+    service_interactive     => $service_interactive,
   } ->
 
   winsw::service { 'run_myservice':
