@@ -46,8 +46,7 @@ define winsw::install (
   # manage files
   # ensure entire path exists -- never remove
   if ($ensure == present) {
-    winsw::recurse_dir { "directories_${service_id}":
-      ensure => directory,
+    toolbox::mkdirs { "directories_${service_id}":
       path   => $install_path,
     }
   }
