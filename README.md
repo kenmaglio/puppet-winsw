@@ -133,4 +133,12 @@ puppet apply -v -e 'include winsw' --modulepath=[your path to modules here]
 </code></pre>
 You can include --noop if you don't want to apply, however service actions will fail as it won't actually install.
 
+If you run an elevated command prompt, you can navigate to the service executable directory.
+Then you can use these to test states of your service and the module. (note MyService is your servie name)
+<pre><code>
+MyService.exe stop
+MyService.exe uninstall
+MyService.exe start
+MyService.exe install
+</code></pre>
 
