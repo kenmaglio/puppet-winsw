@@ -2,7 +2,7 @@
 #
 #
 define winsw::service (
-  $service_id = undef,
+  $service_id = $title,
   $ensure = undef,
   $install_path = 'C:/Program Files/WinSW/',
 ) {
@@ -14,23 +14,12 @@ define winsw::service (
     fail('Ensure must be provided')
   }
 
-  if ($ensure == running ) {
-    exec { "start_service_${service_id}":
-      command  => "& '${install_path}${service_id}.exe' start",
-      unless   => "\$started = (& '${install_path}${service_id}.exe' status); \
-                   if (\$started -eq \"Started\") { exit 0 } else { exit 1 }",
-      provider => powershell,
-    }
-  }
-
-  if ($ensure == stopped ) {
-    exec { "stop_service_${service_id}":
-      command     => "& '${install_path}${service_id}.exe' stop",
-      unless      => "\$started = (& '${install_path}${service_id}.exe' status); \
-                      if (\$installed -eq \"Stopped\") { exit 0 } else { exit 1 }",
-      refreshonly => true,
-      provider    => powershell,
-    }
+  service { $service_id:
+    ensure  => $ensure,
+    start   => "${install_path}${service_id}.exe' start",
+    stop    => "${install_path}${service_id}.exe' stop",
+    restart => "${install_path}${service_id}.exe' restart!",
+    status  => "${install_path}${service_id}.exe' status",
   }
 
 }

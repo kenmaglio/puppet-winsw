@@ -3,8 +3,5 @@
 # cache/options directory
 .vscode/
 
-# git
-.git/
-
 # pkg
-.pkg/
+pkg/
