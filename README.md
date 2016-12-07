@@ -50,12 +50,13 @@ You can take two approaches:
 ## Usage
 
 Usage Pattern for Installing and Configuring
+Title = name of executable / service
+
 <pre><code>
-  winsw::install { 'install_myservice':
+  winsw::install { 'MyService':
     ensure                  => present,
     winsw_binary_version    => $winsw_binary_version,
     install_path            => $install_path,
-    service_id              => $service_id,
     service_name            => $service_name,
     service_executable      => $service_executable,
     service_argument_string => $service_argument_string,
@@ -63,17 +64,15 @@ Usage Pattern for Installing and Configuring
     service_env_variables   => $service_env_variables,
     service_logmode         => $service_logmode,
   } ->
-  winsw::service { 'run_myservice':
+  winsw::service { 'MyService':
     ensure     => running,
-    service_id => $service_id,
   }
 </code></pre>
 
 Usage Pattern for Uninstalling
 <pre><code>
-  winsw::install { 'uninstall_myservice':
+  winsw::install { 'MyService':
     ensure     => absent,
-    service_id => $service_id,
   }
 </code></pre>
 
